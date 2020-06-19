@@ -10,7 +10,7 @@ nextflow.preview.dsl=2
 params.database_path = 'databases'
 params.database = 'Standard_v2'
 params.read_length = 100
-params.input = 'sequences'
+params.sequences = 'sequences'
 params.outdir = 'results'
 
 /* ############################################################################
@@ -96,9 +96,11 @@ workflow {
 
 kraken2 & bracken abundance estimation
 ======================================
-FASTQ Path: ${params.input}
+FASTQ Path: ${params.sequences}
 Results Path: ${params.outdir}
-
+Kraken Database Path: ${params.database_path}
+Selected Kraken Database: ${params.database}
+Read length: ${params.read_length}
 ************************************************************
 
 """
@@ -108,7 +110,7 @@ Results Path: ${params.outdir}
     checkIfExists: true
   )
 
-  fastq_triples = Channel.fromFilePairs("${params.input}/**{1,2}.fastq.gz",
+  fastq_triples = Channel.fromFilePairs("${params.sequences}/**{1,2}.fastq.gz",
     checkIfExists: true,
     flat: true
   )
