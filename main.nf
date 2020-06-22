@@ -34,6 +34,7 @@ Kraken Database Path: ${params.database_path}
 Selected Kraken Database: ${params.database}
 Read length: ${params.read_length}
 Bracken threshold: ${params.threshold}
+
 ************************************************************
 
 """
