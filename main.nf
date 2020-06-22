@@ -10,6 +10,7 @@ nextflow.preview.dsl=2
 params.database_path = 'databases'
 params.database = 'Standard_v2'
 params.read_length = 100
+params.threshold = 10
 params.sequences = 'sequences'
 params.outdir = 'results'
 
@@ -61,6 +62,7 @@ process bracken {
     -i "${kraken_report}" \
     -o "${kraken_report.getSimpleName()}_${taxonomy_level}.bracken" \
     -r ${params.read_length} \
+    -t ${params.threshold} \
     -l ${taxonomy_level}
   """
 }
@@ -101,6 +103,7 @@ Results Path: ${params.outdir}
 Kraken Database Path: ${params.database_path}
 Selected Kraken Database: ${params.database}
 Read length: ${params.read_length}
+Bracken threshold: ${params.threshold}
 ************************************************************
 
 """
